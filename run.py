@@ -1,4 +1,7 @@
-from api import app
+from flask import Flask
+from apis import api
 
-if __name__ == '__main__':
-    app.run(debug=True)
+app = Flask(__name__)
+api.init_app(app)
+
+app.run(debug=True)
