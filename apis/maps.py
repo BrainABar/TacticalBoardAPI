@@ -25,7 +25,7 @@ class ReferencesList(Resource):
     @api.marshal_list_with(reference)
     def get(self):
         ''' List of all references '''
-        return GAMES
+        return 123
 
 
 @api.route('/reference/<id>')
@@ -47,7 +47,5 @@ class Map(Resource):
     @api.marshal_with(map)
     def get(self, id):
         '''  Fetch maps given identifier '''
-        for item in MAPS:
-            if item['id'] == id:
-                return item
+        return id
         api.abort(404)
