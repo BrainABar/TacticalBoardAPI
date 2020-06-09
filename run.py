@@ -1,9 +1,9 @@
 from flask import Flask
-from apis.api import api
 from database.data import db_session
+from blueprints.maps import api as map_blueprint
 
-app = Flask(__name__)
-api.init_app(app)
+app = Flask('TacticalBoardAPI')
+app.register_blueprint(map_blueprint, url_prefix='/api/v1')
 
 
 @app.teardown_appcontext
