@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from .data import Base
 
@@ -25,10 +25,23 @@ class Map(Base):
 
 class MapImage(Base):
     __tablename__ = 'mapImage'
+    __table_args__ = (UniqueConstraint('map_id', 'level', name='mapLevel'),)
 
     id = Column(Integer, primary_key=True)
     label = Column(String)
     description = Column(String)
-    file = Column(String)
+    url = Column(String)
+    level = Column(Integer)
     map_id = Column(Integer, ForeignKey('map.id'))
     map = relationship('Map', back_populates='mapImages')
+    layers = relationship('Layer', back_populates='image')
+
+
+class Layer(Base):
+    __tablename__ = 'layer'
+
+    id = Column(Integer, primary_key=True)
+    label = Column(String)
+    url = Column(String)
+    image_id = Column(Integer, ForeignKey('mapImage.id'))
+    image = relationship('MapImage', back_populates='layers')

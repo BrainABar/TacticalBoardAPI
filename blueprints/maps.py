@@ -1,6 +1,6 @@
 from flask import Blueprint
 from database.data import db_session
-from database.models import Reference, Map, MapImage
+from database.models import Reference, Map, MapImage, Layer
 
 api = Blueprint('map api', __name__)
 
@@ -46,7 +46,7 @@ def urls(map_id: int):
 def url(url_id):
     ''' Get url link and details '''
     image = db_session.query(MapImage).filter(MapImage.id == url_id).one()
-    return image.file
+    return image.url
 
 '''
 @api.errorhandler(404)
