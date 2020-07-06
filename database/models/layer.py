@@ -1,0 +1,14 @@
+from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
+from sqlalchemy.orm import relationship
+from database.data import Base
+from marshmallow import Schema, fields
+
+
+class Layer(Base):
+    __tablename__ = 'layer'
+
+    id = Column(Integer, primary_key=True)
+    label = Column(String)
+    url = Column(String)
+    image_id = Column(Integer, ForeignKey('mapImage.id'))
+    image = relationship('MapImage', back_populates='layers')
