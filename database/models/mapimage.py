@@ -1,8 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from database.data import Base
-from marshmallow import Schema, fields
-
 
 class MapImage(Base):
     __tablename__ = 'mapImage'
@@ -15,4 +13,4 @@ class MapImage(Base):
     level = Column(Integer)
     map_id = Column(Integer, ForeignKey('map.id'))
     map = relationship('Map', back_populates='mapImages')
-    layers = relationship('Layer', back_populates='image')
+    layers = relationship('Layer', back_populates='image', lazy='dynamic')

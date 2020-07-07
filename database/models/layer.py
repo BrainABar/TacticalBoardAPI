@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from database.data import Base
-from marshmallow import Schema, fields
 
 
 class Layer(Base):
