@@ -11,4 +11,4 @@ class Map(Base):
     description = Column(String)
     reference_id = Column(Integer, ForeignKey('reference.id'))
     reference = relationship('Reference', back_populates='maps')
-    mapImages = relationship('MapImage', back_populates='map', lazy='dynamic')
+    mapImages = relationship('MapImage', back_populates='map', lazy='select')

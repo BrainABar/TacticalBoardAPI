@@ -1,38 +1,42 @@
-from marshmallow import Schema, fields
+from pydantic import BaseModel, HttpUrl
+from typing import List
 
 
-class LayerSchema(Schema):
-    class Meta:
-        fields = ("id",
-                  "label",
-                  "url",
-                  )
-        ordered = True
+class LayerSchema(BaseModel):
+    id: int
+    label: str
+    url: HttpUrl
+
+    class Config:
+        orm_mode = True
 
 
-class ImageSchema(Schema):
-    class Meta:
-        fields = ("id",
-                  "label",
-                  "description",
-                  "url",
-                  "level",
-                  )
-        ordered = True
+class ImageSchema(BaseModel):
+    id: int
+    label: str
+    url: HttpUrl
+    description: str
+    level: int
 
-class MapSchema(Schema):
-    class Meta:
-        fields = ("id",
-                  "label",
-                  "description",
-                  )
-        ordered = True
+    class Config:
+        orm_mode = True
 
 
-class ReferenceSchema(Schema):
-    class Meta:
-        fields = ("id",
-                  "label",
-                  "description",
-                  )
-        ordered = True
+class MapSchema(BaseModel):
+    id: int
+    label: str
+    description: str
+
+    #reference = fields.Nested(lambda: ReferenceSchema, only=("id", "label",))
+    class Config:
+        orm_mode = True
+
+
+class ReferenceSchema(BaseModel):
+    id: int
+    label: str
+    description: str
+
+    #maps = fields.Nested(lambda: MapSchema, many=True, only=("id", "label", ))
+    class Config:
+        orm_mode = True

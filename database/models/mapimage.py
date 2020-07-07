@@ -13,4 +13,4 @@ class MapImage(Base):
     level = Column(Integer)
     map_id = Column(Integer, ForeignKey('map.id'))
     map = relationship('Map', back_populates='mapImages')
-    layers = relationship('Layer', back_populates='image', lazy='dynamic')
+    layers = relationship('Layer', back_populates='image', lazy='select')

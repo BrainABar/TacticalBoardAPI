@@ -9,4 +9,4 @@ class Reference(Base):
     id = Column(Integer, primary_key=True)
     label = Column(String)
     description = Column(String)
-    maps = relationship('Map', back_populates='reference', lazy='dynamic')
+    maps = relationship('Map', back_populates='reference', lazy='select')

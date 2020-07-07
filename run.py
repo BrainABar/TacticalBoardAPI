@@ -1,8 +1,15 @@
-from flask import Flask
-from blueprints.maps import api as map_blueprint
+from fastapi import FastAPI
+import uvicorn
+from routers import maps_api
 
-app = Flask('TacticalBoardAPI')
-app.register_blueprint(map_blueprint, url_prefix='/api/v1')
+#app = Flask('TacticalBoardAPI')
+#app.config['CORS_HEADER'] = 'Content-Type'
+#app.register_blueprint(map_blueprint, url_prefix='/v1')
+
+app = FastAPI()
+app.include_router(maps_api.api,
+                   prefix='/v1',)
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    uvicorn.run(app)
