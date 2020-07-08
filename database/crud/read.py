@@ -1,11 +1,7 @@
 from database.data import get_database
 from sqlalchemy.orm import joinedload
-from database.models.reference import Reference
+from database.models import Reference, Map, MapImage, Layer
 from sqlalchemy.orm import Session
-from database.models.reference import Reference
-from database.models.map import Map
-from database.models.mapimage import MapImage
-from database.models.layer import Layer
 
 
 def get_references(db: Session = next(get_database())):
@@ -17,6 +13,7 @@ def get_reference(ref_id: int, db: Session = next(get_database())):
     reference = db.query(Reference)\
         .options(joinedload(Reference.maps))\
         .filter(Reference.id == ref_id).first()
+    print(db.hash_key)
     return reference
 
 

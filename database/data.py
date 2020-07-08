@@ -3,13 +3,11 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/postgres', echo=True)
-default_session = sessionmaker(autocommit=False,
+session_factory = sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine)
-Session = scoped_session(default_session)
+Session = scoped_session(session_factory=session_factory)
 Base = declarative_base()
-Base.query = Session.query_property()
-
 
 def init_database():
     import database.models
@@ -21,4 +19,4 @@ def get_database():
     try:
         yield db
     finally:
-        db.close()
+        Session.remove()

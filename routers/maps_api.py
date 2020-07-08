@@ -1,4 +1,4 @@
-from database.schema import ReferenceSchema, MapSchema, ImageSchema, LayerSchema
+from database.schemas import ReferenceSchema, MapSchema, ImageSchema, LayerSchema
 from fastapi import APIRouter
 from typing import List
 from database.crud import read
@@ -7,7 +7,7 @@ api = APIRouter()
 
 
 @api.get('/references', response_model=List[ReferenceSchema])
-async def get_references():
+def get_references():
     '''
     get:
         summary: References endpoint.
@@ -23,31 +23,31 @@ async def get_references():
 
 
 @api.get('/references/{reference_id}', response_model=ReferenceSchema)
-async def get_reference(reference_id: int):
+def get_reference(reference_id: int):
     ''' Get A reference by id '''
     return read.get_reference(ref_id=reference_id)
 
 
 @api.get('/references/{reference_id}/maps', response_model=List[MapSchema])
-async def get_maps(reference_id: int):
+def get_maps(reference_id: int):
     ''' List of maps associated with reference id'''
     return read.get_maps(ref_id=reference_id)
 
 
 @api.get('/maps/{map_id}', response_model=MapSchema)
-async def get_map(map_id: int):
+def get_map(map_id: int):
     ''' Get map details and list of map urls '''
     return read.get_map(map_id=map_id)
 
 
 @api.get('/maps/{map_id}/images', response_model=List[ImageSchema])
-async def get_images(map_id: int):
+def get_images(map_id: int):
     ''' Get url list from map id '''
     return read.get_images(map_id=map_id)
 
 
 @api.get('/images/{image_id}', response_model=ImageSchema)
-async def get_image(image_id: int):
+def get_image(image_id: int):
     ''' Get url link and details '''
     return read.get_image(image_id=image_id)
 
@@ -58,7 +58,7 @@ def get_layers(image_id: int):
 
 
 @api.get('/layers/<int:layer_id>', response_model=LayerSchema)
-async def get_layer(layer_id: int):
+def get_layer(layer_id: int):
     return read.get_layer(layer_id=layer_id)
 
 '''
