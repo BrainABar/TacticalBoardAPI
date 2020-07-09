@@ -1,6 +1,5 @@
-from pydantic import BaseModel, HttpUrl
-from typing import List
-from database.schemas.reference import ReferenceSchema
+from pydantic import BaseModel
+
 
 class MapSchema(BaseModel):
     id: int

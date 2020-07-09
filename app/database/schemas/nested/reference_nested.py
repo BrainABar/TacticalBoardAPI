@@ -1,5 +1,5 @@
-from database.schemas import ReferenceSchema
-from database.schemas import MapSchema
+from app.database import ReferenceSchema
+from app.database import MapSchema
 from typing import List
 
 class ReferenceMaps(ReferenceSchema):

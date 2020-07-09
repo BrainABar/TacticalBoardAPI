@@ -1,15 +1,10 @@
-from database.schemas import MapSchema, ImageSchema, LayerSchema
-from database import schemas
-from database.schemas import nested
 from fastapi import APIRouter
-from typing import List
-from database import crud
-from database.crud import read
+from app.database import crud
 
 api = APIRouter()
 
 
-@api.get('/references', response_model=List[schemas.ReferenceSchema])
+@api.get('/references')
 def get_references():
     '''
     get:
@@ -25,19 +20,19 @@ def get_references():
     return crud.reference.get_multiple()
 
 
-@api.get('/references/{reference_id}', response_model=schemas.ReferenceSchema)
+@api.get('/references/{reference_id}')
 def get_reference(reference_id: int):
     ''' Get A reference by id '''
     return crud.reference.get(model_id=reference_id)
 
 
-@api.get('/references/{reference_id}/maps', response_model=nested.ReferenceMaps)
+@api.get('/references/{reference_id}/maps')
 def get_maps(reference_id: int):
     ''' List of maps associated with reference id'''
     return crud.reference.get_relationships(model_id=reference_id)
 
 
-@api.get('/maps/{map_id}', response_model=schemas.MapSchema)
+@api.get('/maps/{map_id}')
 def get_map(map_id: int):
     ''' Get map details and list of map urls '''
     return crud.map.get(model_id=map_id)

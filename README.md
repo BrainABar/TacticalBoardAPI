@@ -6,7 +6,7 @@ Inspired by:
 
 To run local server uvicorn is used:
 
-uvicorn run:app --reload --post 8000
+uvicorn app:app --reload --post 8000
 
 Commands when starting docker:
 1. docker-compose up -d -> runs docker file detached

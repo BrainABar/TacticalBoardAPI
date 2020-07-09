@@ -1,7 +1,7 @@
 from typing import Any, Generic, Type, TypeVar, Optional, List
-from database.db import Base
+from app.database.db import Base
 from sqlalchemy.orm import Session
-from database.db import get_database
+from app.database.db import get_database
 from sqlalchemy.inspection import inspect
 from sqlalchemy.orm import joinedload
 
