@@ -1,12 +1,15 @@
-from database.schemas import ReferenceSchema, MapSchema, ImageSchema, LayerSchema
+from database.schemas import MapSchema, ImageSchema, LayerSchema
+from database import schemas
+from database.schemas import nested
 from fastapi import APIRouter
 from typing import List
+from database import crud
 from database.crud import read
 
 api = APIRouter()
 
 
-@api.get('/references', response_model=List[ReferenceSchema])
+@api.get('/references', response_model=List[schemas.ReferenceSchema])
 def get_references():
     '''
     get:
@@ -19,47 +22,47 @@ def get_references():
             404:
                 description: Reference objects not found
     '''
-    return read.get_references()
+    return crud.reference.get_multiple()
 
 
-@api.get('/references/{reference_id}', response_model=ReferenceSchema)
+@api.get('/references/{reference_id}', response_model=schemas.ReferenceSchema)
 def get_reference(reference_id: int):
     ''' Get A reference by id '''
-    return read.get_reference(ref_id=reference_id)
+    return crud.reference.get(model_id=reference_id)
 
 
-@api.get('/references/{reference_id}/maps', response_model=List[MapSchema])
+@api.get('/references/{reference_id}/maps', response_model=nested.ReferenceMaps)
 def get_maps(reference_id: int):
     ''' List of maps associated with reference id'''
-    return read.get_maps(ref_id=reference_id)
+    return crud.reference.get_relationships(model_id=reference_id)
 
 
-@api.get('/maps/{map_id}', response_model=MapSchema)
+@api.get('/maps/{map_id}', response_model=schemas.MapSchema)
 def get_map(map_id: int):
     ''' Get map details and list of map urls '''
-    return read.get_map(map_id=map_id)
+    return crud.map.get(model_id=map_id)
 
 
-@api.get('/maps/{map_id}/images', response_model=List[ImageSchema])
+@api.get('/maps/{map_id}/images')
 def get_images(map_id: int):
     ''' Get url list from map id '''
-    return read.get_images(map_id=map_id)
+    return crud.map.get_relationships(model_id=map_id)
 
 
-@api.get('/images/{image_id}', response_model=ImageSchema)
+@api.get('/images/{image_id}')
 def get_image(image_id: int):
     ''' Get url link and details '''
-    return read.get_image(image_id=image_id)
+    return crud.image.get(model_id=image_id)
 
 
-@api.get('/images/{image_id}/layers', response_model=List[LayerSchema])
+@api.get('/images/{image_id}/layers')
 def get_layers(image_id: int):
-    return read.get_layers(image_id=image_id)
+    return crud.image.get_relationships(model_id=image_id)
 
 
-@api.get('/layers/<int:layer_id>', response_model=LayerSchema)
+@api.get('/layers/<int:layer_id>')
 def get_layer(layer_id: int):
-    return read.get_layer(layer_id=layer_id)
+    return crud.layer.get(model_id=layer_id)
 
 '''
 @api.errorhandler(404)

@@ -6,6 +6,5 @@ class ReferenceSchema(BaseModel):
     label: str
     description: str
 
-    #maps = fields.Nested(lambda: MapSchema, many=True, only=("id", "label", ))
     class Config:
         orm_mode = True
