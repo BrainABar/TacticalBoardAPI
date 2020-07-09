@@ -4,6 +4,9 @@ Inspired by:
 1. Lack of planning within tactical games
 2. Lack of support for current solutions.
 
+To run local server uvicorn is used:
+uvicorn run:app --reload --post 8000
+
 Commands when starting docker:
 1. docker-compose up -d -> runs docker file detached
 2. python
