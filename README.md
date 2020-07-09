@@ -5,6 +5,7 @@ Inspired by:
 2. Lack of support for current solutions.
 
 To run local server uvicorn is used:
+
 uvicorn run:app --reload --post 8000
 
 Commands when starting docker:
