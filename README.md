@@ -7,8 +7,8 @@ Inspired by:
 Starting database with docker-compose:
 1. ```docker-compose up -d``` (runs dockers detached)
 2. ```python```
-3. ```from app.database.db import init_db()```
-4. ```init_db()``` (create the database tables)
+3. ```from app.database import db```
+4. ```db.init_db()``` (create the database tables)
 5. ```exit()```
 6. ```docker volume ls``` (check that database is created after running python init command)
 7. ```docker ps``` (list containers to get id)
@@ -18,8 +18,11 @@ Postgres Commands:
 1. ```psql -U postgres```
 2. `````\dt````` (list tables to confirm creation)
 
+3.```CREATE EXTENSION IF NOT EXIST "uuid-ossp";```
+4.```uuid_generate_v4()```
+
 To run local server uvicorn with command from src/app/ directory (same command used to start within docker):
-> uvicorn run:app --reload --host 0.0.0.0 --post 8080
+> uvicorn app.run:app --reload --host 0.0.0.0 --post 8080
 
 Build image with docker file:
 > docker build -t **image-name** **path/to/dir**
