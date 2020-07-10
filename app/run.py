@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import map_api
+from src.app import map_api
 
 #app = Flask('TacticalBoardAPI')
 #app.config['CORS_HEADER'] = 'Content-Type'

@@ -1,5 +1,5 @@
-from app.database.crud.base import CRUDBase, Type
-from app.database.models import Reference
+from src.app import CRUDBase, Type
+from src.app import Reference
 
 
 class CRUDreference(CRUDBase[Reference]):

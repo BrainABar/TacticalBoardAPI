@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from app.database.db import Base
+from src.app import Base
 
 
 class Layer(Base):

@@ -1,5 +1,5 @@
-from app.database.crud.base import CRUDBase, Type
-from app.database.models import MapImage
+from src.app import CRUDBase, Type
+from src.app import MapImage
 
 
 class CRUDImage(CRUDBase[MapImage]):

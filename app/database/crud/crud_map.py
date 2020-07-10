@@ -1,5 +1,5 @@
-from app.database.crud.base import CRUDBase, Type
-from app.database.models import Map
+from src.app import CRUDBase, Type
+from src.app import Map
 
 
 class CRUDMap(CRUDBase[Map]):

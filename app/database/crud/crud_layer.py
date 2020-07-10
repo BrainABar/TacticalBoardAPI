@@ -1,5 +1,5 @@
-from app.database.crud.base import CRUDBase, Type
-from app.database.models import Layer
+from src.app import CRUDBase, Type
+from src.app import Layer
 
 
 class CRUDLayer(CRUDBase[Layer]):

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
-from app.database.db import Base
+from src.app import Base
 
 class MapImage(Base):
     __tablename__ = 'mapImage'
