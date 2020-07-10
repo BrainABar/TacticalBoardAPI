@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 from app.database import crud
-from sqlalchemy.dialects.postgresql import UUID
 
 api = APIRouter()
 

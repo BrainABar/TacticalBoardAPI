@@ -2,12 +2,12 @@ from sqlalchemy import Column, TIMESTAMP, String, text
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
 from sqlalchemy.dialects.postgresql import UUID
 from uuid import uuid4
-import time
+from sqlalchemy.sql import func
 
 @as_declarative()
 class Base(object):
     id = Column(UUID(as_uuid=True), primary_key=True, unique=True, default=uuid4)
-    last_updated = Column(TIMESTAMP, onupdate=time.time(), server_default=text('CURRENT_TIMESTAMP'))
+    last_updated = Column(TIMESTAMP, onupdate=func.now(), server_default=text('CURRENT_TIMESTAMP'))
     __name__ = Column(String)
 
     @declared_attr
