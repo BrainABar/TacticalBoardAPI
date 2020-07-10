@@ -1,9 +1,10 @@
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
-from typing import Any
+from sqlalchemy.dialects.postgresql import UUID
+
 
 @as_declarative()
 class Base:
-    id: Any
+    id: UUID
     __name__: str
 
     @declared_attr
