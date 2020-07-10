@@ -5,6 +5,7 @@ Inspired by:
 2. Lack of support for current solutions
 
 Backend with Docker, Postgres, Python(Fastapi), Nginx
+
 Starting database with docker-compose:
 1. ```docker-compose up -d``` (runs dockers detached)
 2. ```python```
