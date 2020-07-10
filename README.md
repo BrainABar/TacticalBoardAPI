@@ -12,7 +12,7 @@ Starting database with docker-compose:
 5. ```exit()```
 6. ```docker volume ls``` (check that database is created after running python init command)
 7. ```docker ps``` (list containers to get id)
-8. ```docker exec -ti containerID bash``` (go into container with bash)
+8. ```docker exec -ti <containerID> bash``` (go into container with bash)
 
 Postgres Commands:
 1. ```psql -U postgres```
